@@ -5,4 +5,4 @@ streamlit-option-menu==0.3.2
 scikit-learn==1.3.0
 SQLALchemy==1.4.39
 feature-engine==1.6.2
-pymysql==1.1.0
+PyMySql==1.1.0
