@@ -59,7 +59,7 @@ def main():
     
 
     uploadedFile = st.sidebar.file_uploader("Upload a file" , type = ['csv','xlsx'], accept_multiple_files = False, key = "fileUploader")
-        data = None  # Define data here
+    data = None  # Define data here
 
     if uploadedFile is not None :
         try:
