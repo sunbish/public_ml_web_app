@@ -5,7 +5,7 @@ Created on Fri May 10 20:34:52 2024
 @author: SRI VAISHNAVI
 """
 #pip install sqlalchemy
-import sqlalchemy
+
 import pickle
 import pandas as pd
 import streamlit as st 
