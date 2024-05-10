@@ -21,10 +21,10 @@ minmax = joblib.load('minmax')
 encode = joblib.load('encoding')
 
 
-def predict_Y( data, user, pw, db):
+def predict_Y( input_data, user, pw, db):
 
     engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
-    data = data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'])
+    data = input_data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'])
 
     cf = data.select_dtypes(include = 'object').columns
     clean = pd.DataFrame(impute.transform(data), columns = data.columns)
