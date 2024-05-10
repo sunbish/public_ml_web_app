@@ -35,7 +35,8 @@ def predict_Y( data, user, pw, db):
     cclean = pd.concat([clean2, x_encode], axis=1) #---
     
     prediction = pd.DataFrame(model1.predict(cclean), columns = ['machin_failure_pred'])
-    
+    data.reset_index(drop=True, inplace=True)  # Reset index before concatenating
+
     final = pd.concat([prediction, data], axis = 1)
         
     final.to_sql('KNN_test', con = engine, if_exists = 'replace', chunksize = 1000, index = False)
