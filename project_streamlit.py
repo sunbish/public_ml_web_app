@@ -9,6 +9,7 @@ import sqlalchemy
 import pickle
 import pandas as pd
 import streamlit as st 
+import pymysql
 
 from sqlalchemy import create_engine
 import joblib, pickle
