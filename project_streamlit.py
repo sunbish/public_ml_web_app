@@ -87,7 +87,7 @@ def main():
     result = ""
     
     if st.button("Predict"):
-        result = predict_Y(data, user, pw, db)
+        result = predict_Y(input_data, user, pw, db)
                            
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
