@@ -89,7 +89,7 @@ def main():
     result = ""
     
     if st.button("Predict"):
-                if data is not None:  # Check if data is defined
+     if data is not None:  # Check if data is defined
 
         result = predict_Y(data, user, pw, db)
                            
