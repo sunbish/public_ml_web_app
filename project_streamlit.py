@@ -10,6 +10,7 @@ import sqlalchemy
 import pickle
 import pandas as pd
 import streamlit as st 
+import seaborn as sns
 
 
 
@@ -90,7 +91,7 @@ def main():
     if st.button("Predict"):
         result = predict_Downtime(data, user, pw, db)
                            
-        import seaborn as sns
+        
         cm = sns.light_palette("yellow", as_cmap = True)
         st.table(result.style.background_gradient(cmap = cm))
 
