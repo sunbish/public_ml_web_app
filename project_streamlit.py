@@ -98,7 +98,7 @@ def main():
         cm = sns.light_palette("yellow", as_cmap = True)
         st.table(result.style.background_gradient(cmap = cm))
 
-else
+else :
         st.warning("Please upload a CSV or Excel file before predicting.")
 
      
