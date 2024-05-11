@@ -21,7 +21,7 @@ minmax = joblib.load('minmax')
 encode = joblib.load('encoding')
 
 
-def predict_Y( data, user, pw, db):
+def predict_Downtime( data, user, pw, db):
 
     engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
     data= data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'])
@@ -30,12 +30,9 @@ def predict_Y( data, user, pw, db):
     clean = pd.DataFrame(impute.transform(data), columns = data.columns)
     clean1 = pd.DataFrame(winzor.transform(clean), columns = data.columns)
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
-    #clean3 = pd.DataFrame(encode.transform(clean2), columns = data[cf])
-    x_encode = pd.DataFrame(encode.transform(data), columns = encode.get_feature_names_out())  #-----
-    cclean = pd.concat([clean2, x_encode], axis=1) #---
     
-    prediction = pd.DataFrame(model1.predict(cclean), columns = ['Machine_Fault_Prediction'])
-    data.reset_index(drop=True, inplace=True)  # Reset index before concatenating
+    
+    prediction = pd.DataFrame(model1.predict(clean2), columns = ['Machine_Fault_Prediction'])
 
     final = pd.concat([prediction, data], axis = 1)
         
@@ -92,7 +89,7 @@ def main():
     if st.button("Predict"):
      
 
-        result = predict_Y(data, user, pw, db)
+        result = predict_Downtime(data, user, pw, db)
                            
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
