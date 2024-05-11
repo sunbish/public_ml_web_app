@@ -33,7 +33,7 @@ def predict_Downtime( data, user, pw, db):
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
     
     
-    prediction = pd.DataFrame(model1.predict(clean), columns = ['Machine_Fault_Prediction'])
+    prediction = pd.DataFrame(model1.predict(clean2), columns = ['Machine_Fault_Prediction'])
 
     final = pd.concat([prediction, data], axis = 1)
         
