@@ -92,7 +92,7 @@ def main():
     if st.button("Predict"):
      if data is not None:  # Check if data is defined
 
-        result = predict_Y(data, user, pw, db)
+        result = predict_Y(data)
                            
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
