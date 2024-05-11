@@ -22,8 +22,7 @@ minmax = joblib.load('minmax')
 encode = joblib.load('encoding')
 
 
-# sidebar for navigation
-with st.sidebar:
+
     st.title("Machine Fault Prediction")
     st.sidebar.title("Machine Fault Prediction")
 
