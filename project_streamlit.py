@@ -34,7 +34,7 @@ def predict_Y( data, user, pw, db):
     x_encode = pd.DataFrame(encode.transform(data), columns = encode.get_feature_names_out())  #-----
     cclean = pd.concat([clean2, x_encode], axis=1) #---
     
-    prediction = pd.DataFrame(model1.predict(cclean), columns = ['machin_failure_pred'])
+    prediction = pd.DataFrame(model1.predict(cclean), columns = ['Machine_downtime'])
     data.reset_index(drop=True, inplace=True)  # Reset index before concatenating
 
     final = pd.concat([prediction, data], axis = 1)
@@ -92,7 +92,7 @@ def main():
     if st.button("Predict"):
      if data is not None:  # Check if data is defined
 
-        result = predict_Y(data)
+        result = predict_Y(data, user, pw, db)
                            
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
