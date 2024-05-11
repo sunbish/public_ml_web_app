@@ -14,7 +14,8 @@ import pymysql
 from sqlalchemy import create_engine
 import joblib, pickle
 
-model1 = pickle.load(open('knn.joblib'))
+
+model1 = pickle.load(open('knn.pkl', 'rb'))
 
 impute = joblib.load('meanimpute')
 winzor = joblib.load('winsor')
