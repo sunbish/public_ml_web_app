@@ -14,11 +14,10 @@ import pymysql
 from sqlalchemy import create_engine
 import joblib, pickle
 
-model1 = pickle.load(open('knn.pkl', 'rb'))
+model1 = joblib.load('knn.joblib')
 impute = joblib.load('meanimpute')
 winzor = joblib.load('winsor')
-minmax = joblib.load('minmax')
-encode = joblib.load('encoding')
+
 
 
 def predict_Downtime( data, user, pw, db):
@@ -32,7 +31,7 @@ def predict_Downtime( data, user, pw, db):
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
     
     
-    prediction = pd.DataFrame(model1.predict(clean2), columns = ['Machine_Fault_Prediction'])
+    prediction = pd.DataFrame(model1.predict(clean), columns = ['Machine_Fault_Prediction'])
 
     final = pd.concat([prediction, data], axis = 1)
         
@@ -93,7 +92,7 @@ def main():
                            
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
-        st.table(result.style.background_gradient(cmap = cm))
+        st.table(result)
 
      
                            
