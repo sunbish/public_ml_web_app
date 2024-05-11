@@ -10,7 +10,7 @@ import sqlalchemy
 import pickle
 import pandas as pd
 import streamlit as st 
-from streamlit_option_menu import option_menu
+
 
 
 from sqlalchemy import create_engine
@@ -28,13 +28,12 @@ def predict_Downtime(data, user, pw, db):
     engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
     data = data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'])
 
-    cf = data.select_dtypes(include = 'object').columns
+    
     clean = pd.DataFrame(impute.transform(data), columns = data.columns)
     clean1 = pd.DataFrame(winzor.transform(clean), columns = data.columns)
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
-    #clean3 = pd.DataFrame(encode.transform(clean2), columns = data[cf])
-    x_encode = pd.DataFrame(encode.transform(data), columns = encode.get_feature_names_out())  #-----
-    cclean = pd.concat([clean2, x_encode], axis=1) #---
+    x_encode = pd.DataFrame(encode.transform(data), columns = encode.get_feature_names_out())  
+    cclean = pd.concat([clean2, x_encode], axis=1) 
     
     prediction = pd.DataFrame(model1.predict(cclean), columns = ['machin_failure_pred'])
     
