@@ -21,39 +21,37 @@ winzor = joblib.load('winsor')
 minmax = joblib.load('minmax')
 encode = joblib.load('encoding')
 
+st.title("Machine Fault Prediction")
 
 
-    st.title("Machine Fault Prediction")
-
-
-    # getting the input data from the user
-    col1, col2, col3 = st.columns(3)
+ # getting the input data from the user
+ col1, col2, col3 = st.columns(3)
     
-    with col1:
-        Hydraulic_pressure = st.text_input('Hydraulic_pressure(bar)')
+ with col1:
+     Hydraulic_pressure = st.text_input('Hydraulic_pressure(bar)')
         
-    with col2:
-        Coolant_pressure = st.text_input('Coolant_pressure(bar)')
+ with col2:
+     Coolant_pressure = st.text_input('Coolant_pressure(bar)')
     
-    with col3:
-        Air_systemPressure = st.text_input('Air System Pressure(bar) ')
+with col3:
+    Air_systemPressure = st.text_input('Air System Pressure(bar) ')
     
-    with col1:
-        Coolant_Temperature = st.text_input('Coolant temperature')
+ with col1:
+     Coolant_Temperature = st.text_input('Coolant temperature')
     
-    with col2:
-        HydraulicOiltemperature = st.text_input('Hydraulic oil Temperature')
+ with col2:
+     HydraulicOiltemperature = st.text_input('Hydraulic oil Temperature')
     
-    with col3:
-        ProximitySensors = st.text_input('Proximity sensors')
+ with col3:
+    ProximitySensors = st.text_input('Proximity sensors')
     
-    with col1:
-        Torque = st.text_input('Torque')
+ with col1:
+    Torque = st.text_input('Torque')
     
-    with col2:
-        Voltage = st.text_input('Voltage(volts)')
-    with col3:
-        CuttingForce=st.text_input('Cutting_Force(kns)')
+ with col2:
+     Voltage = st.text_input('Voltage(volts)')
+ with col3:
+    CuttingForce=st.text_input('Cutting_Force(kns)')
 
     
     
