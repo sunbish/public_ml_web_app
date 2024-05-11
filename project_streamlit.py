@@ -92,7 +92,8 @@ def main():
                            
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
-        st.table(result)
+        st.table(result.style.background_gradient(cmap = cm))
+
 
                            
 if __name__=='__main__':
