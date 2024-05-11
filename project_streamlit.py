@@ -34,7 +34,7 @@ def predict_Y( data, user, pw, db):
     x_encode = pd.DataFrame(encode.transform(data), columns = encode.get_feature_names_out())  #-----
     cclean = pd.concat([clean2, x_encode], axis=1) #---
     
-    prediction = pd.DataFrame(model1.predict(cclean), columns = ['Machine_downtime'])
+    prediction = pd.DataFrame(model1.predict(cclean), columns = ['Machine_Fault_Prediction'])
     data.reset_index(drop=True, inplace=True)  # Reset index before concatenating
 
     final = pd.concat([prediction, data], axis = 1)
@@ -60,7 +60,7 @@ def main():
     
 
     uploadedFile = st.sidebar.file_uploader("Upload a file" , type = ['csv','xlsx'], accept_multiple_files = False, key = "fileUploader")
-    data = None  # Define data here
+    
 
     if uploadedFile is not None :
         try:
@@ -90,7 +90,7 @@ def main():
     result = ""
     
     if st.button("Predict"):
-     if data is not None:  # Check if data is defined
+     
 
         result = predict_Y(data, user, pw, db)
                            
