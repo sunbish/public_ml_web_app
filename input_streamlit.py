@@ -24,7 +24,6 @@ encode = joblib.load('encoding')
 
 
     st.title("Machine Fault Prediction")
-    st.sidebar.title("Machine Fault Prediction")
 
 
     # getting the input data from the user
