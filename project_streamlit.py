@@ -24,9 +24,9 @@ encode = joblib.load('encoding')
 def predict_Y( data, user, pw, db):
 
     engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
-    data= data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'],axis = 1, inplace = True)
+    data= data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'])
 
-    cf = data.select_dtypes(include = 'object').columns
+    
     clean = pd.DataFrame(impute.transform(data), columns = data.columns)
     clean1 = pd.DataFrame(winzor.transform(clean), columns = data.columns)
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
@@ -97,9 +97,6 @@ def main():
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
         st.table(result.style.background_gradient(cmap = cm))
-
-else:
-        st.warning("Please upload a CSV or Excel file before predicting.")
 
      
                            
