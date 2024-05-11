@@ -5,3 +5,4 @@ SQLALchemy==1.4.39
 feature-engine==1.6.2
 PyMySql==1.1.0
 pickleshare==0.7.5
+seaborn==0.12.2
