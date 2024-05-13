@@ -25,7 +25,7 @@ encode = joblib.load('encoding')
 
 def preprocess_data(data):
 
-    columns_tranform=['Hydraulic_Pressure(bar)','Coolant_Pressure(bar)','Air_System_Pressure(bar)','Coolant_Temperature','	Hydraulic_Oil_Temperature(Â°C)','Spindle_Bearing_Temperature(Â°C)','Spindle_Vibration(Âµm)','Tool_Vibration(Âµm)','Spindle_Speed(RPM)','Voltage(volts)','Torque(Nm)','Cutting(kN)','Downtime']
+    columns_tranform=['Hydraulic_Pressure(bar)','Coolant_Pressure(bar)','Air_System_Pressure(bar)','Coolant_Temperature','	Hydraulic_Oil_Temperature(Â°C)','Spindle_Bearing_Temperature(Â°C)','Spindle_Vibration(Âµm)','Tool_Vibration(Âµm)','Spindle_Speed(RPM)','Voltage(volts)','Torque(Nm)','Cutting(kN)']
     clean = pd.DataFrame(impute.transform(data), columns = columns_tranform)
     clean1 = pd.DataFrame(winzor.transform(clean), columns = columns_tranform)
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = columns_tranform)
