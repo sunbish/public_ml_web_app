@@ -29,7 +29,7 @@ def preprocess_data(data):
     clean = pd.DataFrame(impute.transform(data), columns = columns_tranform)
     clean1 = pd.DataFrame(winzor.transform(clean), columns = columns_tranform)
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = columns_tranform)
-    
+    return clean2
 def predict_downtime(original, data, user, pw, db):
     
     engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
