@@ -16,7 +16,7 @@ import streamlit as st
 from sqlalchemy import create_engine
 import joblib, pickle
 
-model1 = pickle.load('knn.pkl')
+model1 = joblib.load('knn.pkl')
 impute = joblib.load('meanimpute')
 winzor = joblib.load('winsor')
 minmax = joblib.load('minmax')
