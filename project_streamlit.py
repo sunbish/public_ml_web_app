@@ -87,7 +87,8 @@ def main():
     result = ""
     
     if st.button("Predict"):
-        result = predict_downtime(data, user, pw, db)
+        preprocessed_data=preprocess_data()
+        result = predict_downtime(data, preprocessed_data, user, pw, db)
                            
         import seaborn as sns
         cm = sns.light_palette("yellow", as_cmap = True)
