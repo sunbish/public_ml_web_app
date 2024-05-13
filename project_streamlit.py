@@ -87,7 +87,7 @@ def main():
     result = ""
     
     if st.button("Predict"):
-        preprocessed_data=preprocess_data()
+        preprocessed_data=preprocess_data(data)
         result = predict_downtime(data, preprocessed_data, user, pw, db)
                            
         import seaborn as sns
