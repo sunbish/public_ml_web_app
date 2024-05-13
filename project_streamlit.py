@@ -20,7 +20,7 @@ model1 = pickle.load(open('knn.pkl', 'rb'))
 impute = joblib.load('meanimpute')
 winzor = joblib.load('winsor')
 minmax = joblib.load('minmax')
-encode = joblib.load('encoding')
+
 
 
 def predict_downtime(data, user, pw, db):
@@ -32,11 +32,9 @@ def predict_downtime(data, user, pw, db):
     clean = pd.DataFrame(impute.transform(data), columns = data.columns)
     clean1 = pd.DataFrame(winzor.transform(clean), columns = data.columns)
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
-    #clean3 = pd.DataFrame(encode.transform(clean2), columns = data[cf])
-    x_encode = pd.DataFrame(encode.transform(data), columns = encode.get_feature_names_out())  #-----
-    cclean = pd.concat([clean2, x_encode], axis=1) #---
     
-    prediction = pd.DataFrame(model1.predict(cclean), columns = ['machin_failure_pred'])
+    
+    prediction = pd.DataFrame(model1.predict(clean2), columns = ['machin_failure_pred'])
     
     final = pd.concat([prediction, data], axis = 1)
         
