@@ -23,18 +23,17 @@ minmax = joblib.load('minmax')
 encode = joblib.load('encoding')
 
 
-def predict_downtime(data, user, pw, db):
+def preprocess_data(data):
 
-    engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
-    data = data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'])
-
-    cf = data.select_dtypes(include = 'object').columns
     clean = pd.DataFrame(impute.transform(data), columns = data.columns)
     clean1 = pd.DataFrame(winzor.transform(clean), columns = data.columns)
     clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
     
+def predict_downtime(data, user, pw, db):
     
-    prediction = pd.DataFrame(model1.predict(clean2), columns = ['machin_failure_pred'])
+    engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
+
+    prediction = pd.DataFrame(model1.predict(data), columns = ['machin_failure_pred'])
     
     final = pd.concat([prediction, data], axis = 1)
         
