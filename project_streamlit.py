@@ -25,17 +25,18 @@ encode = joblib.load('encoding')
 
 def preprocess_data(data):
 
-    clean = pd.DataFrame(impute.transform(data), columns = data.columns)
-    clean1 = pd.DataFrame(winzor.transform(clean), columns = data.columns)
-    clean2 = pd.DataFrame(minmax.transform(clean1), columns = data.columns)
+    columns_tranform=['Hydraulic_Pressure(bar)','Coolant_Pressure(bar)','Air_System_Pressure(bar)','Coolant_Temperature','	Hydraulic_Oil_Temperature(Â°C)','Spindle_Bearing_Temperature(Â°C)','Spindle_Vibration(Âµm)','Tool_Vibration(Âµm)','Spindle_Speed(RPM)','Voltage(volts)','Torque(Nm)','Cutting(kN)','Downtime']
+    clean = pd.DataFrame(impute.transform(data), columns = columns_tranform)
+    clean1 = pd.DataFrame(winzor.transform(clean), columns = columns_tranform)
+    clean2 = pd.DataFrame(minmax.transform(clean1), columns = columns_tranform)
     
-def predict_downtime(data, user, pw, db):
+def predict_downtime(original, data, user, pw, db):
     
     engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
 
     prediction = pd.DataFrame(model1.predict(data), columns = ['machin_failure_pred'])
     
-    final = pd.concat([prediction, data], axis = 1)
+    final = pd.concat([prediction, original], axis = 1)
         
     final.to_sql('knn_test', con = engine, if_exists = 'replace', chunksize = 1000, index = False)
 
