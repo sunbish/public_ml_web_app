@@ -46,7 +46,7 @@ def predict_Downtime(data, user, pw, db):
     
     final = pd.concat([prediction, data], axis = 1)
         
-    final.to_sql('KNN_test', con = engine, if_exists = 'replace', chunksize = 1000, index = False)
+    final.to_sql('knn_test', con = engine, if_exists = 'replace', chunksize = 1000, index = False)
 
     return final
 
