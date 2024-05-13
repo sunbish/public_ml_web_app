@@ -24,7 +24,7 @@ minmax = joblib.load('minmax')
 encode = joblib.load('encoding')
 
 
-def predict_Downtime(data, user, pw, db):
+def predict_downtime(data, user, pw, db):
 
     engine = create_engine(f"mysql+pymysql://{user}:{pw}@localhost/{db}")
     data = data.drop(columns = ['Date','Machine_ID', 'Assembly_Line_No'])
@@ -40,7 +40,7 @@ def predict_Downtime(data, user, pw, db):
     
     final = pd.concat([prediction, data], axis = 1)
         
-    final.to_sql('KNN_test', con = engine, if_exists = 'replace', chunksize = 1000, index = False)
+    final.to_sql('knn_test', con = engine, if_exists = 'replace', chunksize = 1000, index = False)
 
     return final
 
@@ -89,7 +89,7 @@ def main():
     result = ""
     
     if st.button("Predict"):
-        result = predict_Downtime(data, user, pw, db)
+        result = predict_downtime(data, user, pw, db)
                            
         
         cm = sns.light_palette("yellow", as_cmap = True)
